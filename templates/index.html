@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>IdeaScore</title>
+</head>
+<body>
+    <form id="idea-form" action="/submit" method="post">
+        <div id="step1">
+            <label for="step1-input">Step 1:</label>
+            <input type="text" id="step1-input" name="step1">
+            <button type="button" id="step1-next">Next</button>
+        </div>
+        <div id="step2" style="display:none;">
+            <button type="button" id="step2-back">Back</button>
+            <label for="step2-input">Step 2:</label>
+            <input type="text" id="step2-input" name="step2">
+            <button type="button" id="step2-next">Next</button>
+        </div>
+        <!-- Add divs for steps 3, 4, and 5 following the same pattern -->
+
+        <div id="step5" style="display:none;">
+            <button type="button" id="step5-back">Back</button>
+            <label for="step5-input">Step 5:</label>
+            <input type="text" id="step5-input" name="step5">
+            <button type="submit" id="get-ideascore">Get IdeaScore</button>
+        </div>
+    </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const nextButtons = document.querySelectorAll("[id$='-next']");
+            const backButtons = document.querySelectorAll("[id$='-back']");
+            const steps = document.querySelectorAll("[id^='step']");
+    
+            nextButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    const currentStep = button.parentElement;
+                    const nextStep = currentStep.nextElementSibling;
+                    currentStep.style.display = "none";
+                    nextStep.style.display = "block";
+                });
+            });
+    
+            backButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    const currentStep = button.parentElement;
+                    const prevStep = currentStep.previousElementSibling;
+                    currentStep.style.display = "none";
+                    prevStep.style.display = "block";
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>
